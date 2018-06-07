@@ -36,12 +36,6 @@ public class PlushieResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         
-        URI location = null;
-        try {
-            location = new URI("../index.jsp");
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(PlushieResource.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return Response.temporaryRedirect(location).build();
+        return Response.ok(plushieList).build();
     }
 }

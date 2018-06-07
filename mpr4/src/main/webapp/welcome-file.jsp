@@ -1,1 +1,1 @@
-<% response.sendRedirect(request.getContextPath() + "/api/plushies" ); %>
+<% response.sendRedirect(request.getContextPath() + "/index.jsp" ); %>
