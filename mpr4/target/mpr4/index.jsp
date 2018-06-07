@@ -32,9 +32,9 @@
                     get(String.class); // use the get method and return the response as a string
     //System.out.println(jsonResponse);
 
-//    ObjectMapper objectMapper = new ObjectMapper(); // This object is from the jackson library
-//
-//    List<Plushie> plushieList = objectMapper.readValue(jsonResponse, new TypeReference<List<Plushie>>(){});  
+    ObjectMapper objectMapper = new ObjectMapper(); // This object is from the jackson library
+
+    List<Plushie> plushieList = objectMapper.readValue(jsonResponse, new TypeReference<List<Plushie>>(){});  
 %>
 
 <!DOCTYPE html>
