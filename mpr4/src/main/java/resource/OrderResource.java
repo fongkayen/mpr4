@@ -5,7 +5,6 @@ package resource;
  */
 import model.Cart;
 import model.Order;
-import model.Plushie;
 import model.OrderService;
 
 import javax.ws.rs.*;
@@ -23,49 +22,59 @@ public class OrderResource {
     //This method represents an endpoint with the URL /todos/{id} and a GET request ( Note that {id} is a placeholder for a path parameter)
     @Path("{cart_id}")
     @GET
-    @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
-    public Response getOrderByCartId(@PathParam("cart_id") int id/* The {id} placeholder parameter is resolved */) {
-        //invokes the DB method which will fetch a todo_list item object by id
+    @Produces( { MediaType.APPLICATION_JSON })
+    public Response getOrderByCartId(@PathParam("cart_id") int id) {
         Cart cart = OrderService.getOrderByCartId(id);
 
-        //Respond with a 404 if there is no such todo_list item for the id provided
         if(cart == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        //Respond with a 200 OK if you have a todo_list_item object to return as response
         return Response.ok(cart).build();
     }
-
-    @Path("plushie_id")
+    
     @GET
     @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
-    public Response getProductById(@PathParam("plushie_id") int id/* The {id} placeholder parameter is resolved */) {
-        //invokes the DB method which will fetch a todo_list item object by id
-        Plushie product = OrderService.getProductById(id);
+    public Response getAllOrders() {
+        List<Order> allOrders = OrderService.getAllOrders();
 
         //Respond with a 404 if there is no such todo_list item for the id provided
-        if(product == null) {
+        if(allOrders == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
         //Respond with a 200 OK if you have a todo_list_item object to return as response
-        return Response.ok(product).build();
+        return Response.ok(allOrders).build();
     }
+
+//    @Path("plushie_id")
+//    @GET
+//    @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
+//    public Response getProductById(@PathParam("plushie_id") int id/* The {id} placeholder parameter is resolved */) {
+//        //invokes the DB method which will fetch a todo_list item object by id
+//        Plushie product = OrderService.getProductById(id);
+//
+//        //Respond with a 404 if there is no such todo_list item for the id provided
+//        if(product == null) {
+//            return Response.status(Response.Status.NOT_FOUND).build();
+//        }
+//
+//        //Respond with a 200 OK if you have a todo_list_item object to return as response
+//        return Response.ok(product).build();
+//    }
     //This method represents an endpoint with the URL /todos and a GET request.
     // Since there is no @PathParam mentioned, the /todos as a relative path and a GET request will invoke this method.
-    @GET
-    @Produces( { MediaType.TEXT_HTML })
-    public Response getAllPlushies() {
-        List<Plushie> productList = OrderService.getAllProducts();
-
-        if(productList == null || productList.isEmpty()) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-
-       return Response.ok(productList).build();
-        //return Response.ok().entity("hellobye").build();
-    }
+//    @GET
+//    @Produces( { MediaType.APPLICATION_JSON })
+//    public Response getAllPlushies() {
+//        List<Plushie> productList = OrderService.getAllProducts();
+//
+//        if(productList == null || productList.isEmpty()) {
+//            return Response.status(Response.Status.NOT_FOUND).build();
+//        }
+//
+//       return Response.ok(productList).build();
+//    }
 
     //This method represents an endpoint with the URL /todos and a POST request.
     // Since there is no @PathParam mentioned, the /todos as a relative path and a POST request will invoke this method.
@@ -80,8 +89,6 @@ public class OrderResource {
 
         // Return an Internal Server error because something wrong happened. This should never be executed
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-
-
     }
 
     //Similar to the method above.
