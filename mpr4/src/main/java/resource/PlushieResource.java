@@ -7,6 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 
 @Path("/plushies")
 public class PlushieResource {
@@ -31,7 +32,9 @@ public class PlushieResource {
         if(plushieList == null || plushieList.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-
+        String plushies = "plushies.jsp";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(plushies);
+        dispatcher.forward(null,Response.ok(plushieList).build());
        return Response.ok(plushieList).build();
     }
 }

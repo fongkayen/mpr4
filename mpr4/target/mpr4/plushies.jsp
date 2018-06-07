@@ -4,6 +4,8 @@
     Author     : Nerianne
 --%>
 
+
+
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>PLUSHIES!</h1>
     </body>
 </html>
