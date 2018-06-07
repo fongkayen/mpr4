@@ -19,9 +19,12 @@ public class Plushie {
     private String in_stock;
     private int num_stock;
     private String made_in;
+    private String[] images;
+    private int imageCounter;
     
     public Plushie(){
-        
+        images = new String[3];
+        imageCounter = 0;
     }
     
     public Plushie(int plushie_id, String name, String description, String about, int price, String material, String in_stock, int num_stock, String made_in){
@@ -89,5 +92,23 @@ public class Plushie {
     }
     public void setMade_in(String made_in){
         this.made_in = made_in;
+    }
+    
+    // IMAGES
+    public void setImages(int counter, String i){
+        images[counter] = i;
+        imageCounter = imageCounter + 1;
+    }
+    public String getImageOne(){
+        return images[0];
+    }
+    public String getImageTwo(){
+        return images[1];
+    }
+    public String getImageThree(){
+        return images[2];
+    }
+    public int getImageCounter(){
+        return imageCounter;
     }
 }

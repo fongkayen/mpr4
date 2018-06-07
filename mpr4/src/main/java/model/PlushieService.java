@@ -8,9 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PlushieService {
     private final static String ALL_PLUSHIES_QUERY = "SELECT * FROM plushies";
+    private final static String ALL_PLUSHIE_IMAGES_QUERY = "SELECT * FROM images";
     private static final Database db = new Database();
 
     public static Plushie getPlushieById(int id){
@@ -71,6 +74,22 @@ public class PlushieService {
                     
                     products.add(product);
                 } while (resultSet.next());
+                
+                resultSet.close();
+                
+                resultSet = DatabaseUtils.retrieveQueryResults(connection, ALL_PLUSHIE_IMAGES_QUERY);
+                
+                resultSet.first();
+                do {
+                   int plushie_id = resultSet.getInt("plushie_id");
+                   
+                   for(int i=0; i<products.size(); ++i){
+                       if(products.get(i).getPlushie_id() == plushie_id){
+                           products.get(i).setImages(products.get(i).getImageCounter(), resultSet.getString("image_path"));
+                           break;
+                       }
+                   }
+                } while(resultSet.next());
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
@@ -81,7 +100,7 @@ public class PlushieService {
                 }
             }
         }
-
+        
         return products;
     }
 }
