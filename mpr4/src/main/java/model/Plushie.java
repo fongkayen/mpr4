@@ -119,14 +119,8 @@ public class Plushie {
     public String getImageOne(){
         return imageOne;
     }
-    public void setImageOne(String i){
-        imageOne = i;
-    }
     public String getImageTwo(){
         return imageTwo;
-    }
-    public void setImageTwo(String i){
-        imageTwo = i;
     }
     public String getImageThree(){
         return imageThree;
@@ -136,8 +130,5 @@ public class Plushie {
     }
     public int getImageCounter(){
         return imageCounter;
-    }
-    public void setImageCounter(int ic){
-        imageCounter = ic;
     }
 }

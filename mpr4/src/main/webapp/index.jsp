@@ -84,6 +84,8 @@
                 out.print("</td>\r\n");
                 if(counter % 3 == 0) {
                     out.println("</tr>");}            
+                
+                counter += 1;
             }
                 %>
                 

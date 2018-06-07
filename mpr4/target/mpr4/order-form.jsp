@@ -71,7 +71,7 @@
                         <tbody>
                             <tr>
                                 <td></td>
-                                <td><%= plushie.getImageOne() %></td>
+                                <td><img src="<%= plushie.getImageOne() %>"></td>
                             </tr>
                             <tr>
                                 <td>Name</td>
@@ -79,15 +79,10 @@
                             </tr>
                             <tr>
                                 <td>Price</td>
-                                <td><%= plushie.getName() %></td>
-                            </tr>
-                            <tr>
-                                <td>Price</td>
-                                <td><%= plushie.getPrice() %></td>
+                                <td>$<%= plushie.getPrice() %></td>
                             </tr>
                         </tbody>
                     </table>
-                    <input type="text" id="productid" name="product_id" placeholder="Product ID*" required pattern="[0-9]{2}"> Input must be two digits. <br/>
                 </fieldset>
                 
                 <fieldset>
