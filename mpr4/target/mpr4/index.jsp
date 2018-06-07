@@ -50,18 +50,16 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/happy-bear-friends/stylesheets/styles.css">
+        <link rel="stylesheet" href="happy-bear-friends/stylesheets/styles.css">
     </head>
     <body>
-        <h1>STUFFED ANIMALS</h1>
         <div class="navbar">
-            <a href="index.html">HOME</a>
-            <a href="views/pages/ourstory.html">OUR STORY</a>
-            <a href="views/pages/products.html">PRODUCTS</a>
+            <a href="/mpr4">HOME</a>
+            <a href="happy-bear-friends/views/pages/ourstory.html">OUR STORY</a>
         </div>
         
         <div class="main">
-            <img src="/happy-bear-friends/images/bear-header.jpg">
+            <img src="happy-bear-friends/images/bear-header.jpg">
             <h1>Welcome to Happy Bear Friends</h1>
             <p>We are a Non-Profit based in Irvine, California and we focus on kid-friendly toys made from all natural environment-friendly materials.
             We hope to bring awareness to rare animals that not a lot of people have heard of, and then turn these animals into plushies with the goal
@@ -87,7 +85,7 @@
 		<%	
             for(Plushie plushie : plushieList) {
             out.print("<li>");
-            out.print(plushie.getPlushie_id() + " - " + plushie.getName());
+            out.print(plushie.getName() + "<br/>\r\n" + "$" + plushie.getPrice() + "<br/>\r\n" + plushie.getMade_in() + "\r\n");
             out.print("</li>");
             }
                 %>
