@@ -34,7 +34,19 @@ public class PlushieService {
                 plushie.setIn_stock(resultSet.getString("in_stock"));
                 plushie.setNum_stock(resultSet.getInt("num_stock"));
                 plushie.setMade_in(resultSet.getString("made_in"));
-
+                
+                resultSet.close();
+                
+                resultSet = DatabaseUtils.retrieveQueryResults(connection, ALL_PLUSHIE_IMAGES_QUERY + " WHERE plushie_id = " + plushie.getPlushie_id());
+                
+                resultSet.first();
+                
+                int c = 0;
+                do{
+                    plushie.setImages(c, resultSet.getString("image_path"));
+                    c += 1;
+                }while(resultSet.next());
+                
                 return plushie;
             } catch (SQLException e) {
                 e.printStackTrace();

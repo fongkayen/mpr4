@@ -83,10 +83,16 @@
             <td>
                 <!--EACH PLUSHIE-->
 		<%	
+            int counter = 1;
             for(Plushie plushie : plushieList) {
-            out.print("<li>");
-            out.print(plushie.getName() + "<br/>\r\n" + "$" + plushie.getPrice() + "<br/>\r\n" + plushie.getMade_in() + "\r\n");
-            out.print("</li>");
+                if(counter % 4 == 0) {
+                    out.println("<tr>");}
+                out.print("<td>\r\n");
+                out.print("<a href=/mpr4/plushies.jsp?plushieid=" + plushie.getPlushie_id() + "><img src=" + plushie.getImageOne() + "></a><br/>\r\n");
+                out.print(plushie.getName() + "<br/>\r\n" + "$" + plushie.getPrice() + "<br/>\r\n" + plushie.getMade_in() + "\r\n");
+                out.print("</td>\r\n");
+                if(counter % 3 == 0) {
+                    out.println("</tr>");}            
             }
                 %>
                 
