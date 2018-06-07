@@ -10,6 +10,7 @@ package model;
  * @author kayen
  */
 public class Order {
+    private int orderID;
     private int cartID;
     private int productID;
     private int price;
@@ -33,9 +34,10 @@ public class Order {
         
     }
     
-    public Order(int cartID, int productID, int price, String firstName, String lastName, String email, String address1, String address2, String state, String city, 
+    public Order(int orderID, int cartID, int productID, int price, String firstName, String lastName, String email, String address1, String address2, String state, String city, 
     String zipcode, String phone, String deliverymethod, String nameoncard, String cardnumber, String expirymonth, String expiryyear, String securitycode)
     {
+        this.orderID = orderID;
         this.cartID = cartID;
         this.productID = productID;
         this.price = price;
@@ -56,6 +58,12 @@ public class Order {
         this.securitycode = securitycode;
     }
     
+    public int getOrderID(){
+        return orderID;
+    }
+    public void setOrderID(int orderID){
+        this.orderID = orderID;
+    }
     public int getCartID(){
             return cartID;
     }

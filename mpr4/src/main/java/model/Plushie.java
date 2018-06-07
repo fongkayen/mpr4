@@ -19,11 +19,12 @@ public class Plushie {
     private String in_stock;
     private int num_stock;
     private String made_in;
-    private String[] images;
+    private String imageOne;
+    private String imageTwo;
+    private String imageThree;
     private int imageCounter;
     
     public Plushie(){
-        images = new String[3];
         imageCounter = 0;
     }
     
@@ -96,19 +97,38 @@ public class Plushie {
     
     // IMAGES
     public void setImages(int counter, String i){
-        images[counter] = i;
+        switch(counter){
+            case 0: imageOne = i;
+            break;
+            case 1: imageTwo = i;
+            break;
+            case 2: imageThree = i;
+            break;
+        }
         imageCounter = imageCounter + 1;
     }
     public String getImageOne(){
-        return images[0];
+        return imageOne;
+    }
+    public void setImageOne(String i){
+        imageOne = i;
     }
     public String getImageTwo(){
-        return images[1];
+        return imageTwo;
+    }
+    public void setImageTwo(String i){
+        imageTwo = i;
     }
     public String getImageThree(){
-        return images[2];
+        return imageThree;
+    }
+    public void setImageThree(String i){
+        imageThree = i;
     }
     public int getImageCounter(){
         return imageCounter;
+    }
+    public void setImageCounter(int ic){
+        imageCounter = ic;
     }
 }
