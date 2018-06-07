@@ -3,7 +3,6 @@ package resource;
 /**
  * Created by tariqibrahim on 5/28/17.
  */
-import model.Cart;
 import model.Order;
 import model.OrderService;
 
@@ -20,17 +19,17 @@ import java.util.List;
 @Path("/orders")
 public class OrderResource {
     //This method represents an endpoint with the URL /todos/{id} and a GET request ( Note that {id} is a placeholder for a path parameter)
-    @Path("{cart_id}")
+    @Path("{order_id}")
     @GET
     @Produces( { MediaType.APPLICATION_JSON })
-    public Response getOrderByCartId(@PathParam("cart_id") int id) {
-        Cart cart = OrderService.getOrderByCartId(id);
+    public Response getOrder(@PathParam("order_id") int order_id) {
+        Order order = OrderService.getOrder(order_id);
 
-        if(cart == null) {
+        if(order == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        return Response.ok(cart).build();
+        return Response.ok(order).build();
     }
     
     @GET
@@ -47,47 +46,14 @@ public class OrderResource {
         return Response.ok(allOrders).build();
     }
 
-//    @Path("plushie_id")
-//    @GET
-//    @Produces( { MediaType.APPLICATION_JSON }) //This provides only JSON responses
-//    public Response getProductById(@PathParam("plushie_id") int id/* The {id} placeholder parameter is resolved */) {
-//        //invokes the DB method which will fetch a todo_list item object by id
-//        Plushie product = OrderService.getProductById(id);
-//
-//        //Respond with a 404 if there is no such todo_list item for the id provided
-//        if(product == null) {
-//            return Response.status(Response.Status.NOT_FOUND).build();
-//        }
-//
-//        //Respond with a 200 OK if you have a todo_list_item object to return as response
-//        return Response.ok(product).build();
-//    }
-    //This method represents an endpoint with the URL /todos and a GET request.
-    // Since there is no @PathParam mentioned, the /todos as a relative path and a GET request will invoke this method.
-//    @GET
-//    @Produces( { MediaType.APPLICATION_JSON })
-//    public Response getAllPlushies() {
-//        List<Plushie> productList = OrderService.getAllProducts();
-//
-//        if(productList == null || productList.isEmpty()) {
-//            return Response.status(Response.Status.NOT_FOUND).build();
-//        }
-//
-//       return Response.ok(productList).build();
-//    }
-
-    //This method represents an endpoint with the URL /todos and a POST request.
-    // Since there is no @PathParam mentioned, the /todos as a relative path and a POST request will invoke this method.
     @POST
     @Consumes({MediaType.APPLICATION_JSON}) //This method accepts a request of the JSON type
     public Response addOrder(Order order) {
 
-        //The todo object here is automatically constructed from the json request. Jersey is so cool!
-        if(OrderService.AddOrder(order)) {
+        if(OrderService.addOrder(order)) {
             return Response.ok().entity("Order Added Successfully").build();
         }
 
-        // Return an Internal Server error because something wrong happened. This should never be executed
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
 
@@ -95,8 +61,8 @@ public class OrderResource {
     @POST
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED}) //This method accepts form parameters.
     //If you were to send a POST through a form submit, this method would be called.
-    public Response addOrder(@FormParam("cartID") int cartID,
-                            @FormParam("productID") int productID,
+    public Response addOrder(@FormParam("cart_id") int cartID,
+                            @FormParam("product_id") int productID,
                             @FormParam("price") int price,
                             @FormParam("firstName") String firstName,
                             @FormParam("lastName") String lastName,
@@ -136,22 +102,22 @@ public class OrderResource {
                 
         System.out.println(order);
 
-        if(OrderService.AddOrder(order)) {
+        if(OrderService.addOrder(order)) {
             return Response.ok().entity("ORDER Added Successfully").build();
         }
 
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
-
+    
     //This method represents a PUT request where the id is provided as a path parameter and the request body is provided in JSON
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
-    public Response updateOrder(@PathParam("cart_id") int cartID, @PathParam("order_id") int order_id, Order order) {
+    public Response updateOrder(@PathParam("order_id") int order_id, Order order) {
 
         // Retrieve the todo that you will need to change
-        Order retrievedOrder = OrderService.getOrder(cartID, order_id);
+        Order retrievedOrder = OrderService.getOrder(order_id);
 
         if(retrievedOrder == null) {
             //If not found then respond with a 404 response.
@@ -160,7 +126,7 @@ public class OrderResource {
         }
 
         // This is the todo_object retrieved from the json request sent.
-        order.setCartID(cartID);
+        order.setOrderID(order_id);
 
 
         // if the user has provided null, then we set the retrieved values.
@@ -228,10 +194,10 @@ public class OrderResource {
     @DELETE
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON})
-    public Response deleteOrder(@PathParam("cart_id") int cart_id, @PathParam("order_id") int order_id) {
+    public Response deleteOrder(@PathParam("order_id") int order_id) {
 
         //Retrieve the todo_object that you want to delete.
-        Order retrievedOrder = OrderService.getOrder(cart_id, order_id);
+        Order retrievedOrder = OrderService.getOrder(order_id);
 
         if(retrievedOrder == null) {
             //If not found throw a 404

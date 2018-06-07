@@ -37,15 +37,6 @@
     List<Plushie> plushieList = objectMapper.readValue(jsonResponse, new TypeReference<List<Plushie>>(){});  
 %>
 
-<!DOCTYPE html>
-<!--<html>
-    <body>
-        <div>
-            Response: <//%= jsonResponse %>
-            
-        </div>
-    </body>
-</html>-->
 <html>
     <head>
         <meta charset="UTF-8">

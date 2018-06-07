@@ -119,16 +119,25 @@ public class Plushie {
     public String getImageOne(){
         return imageOne;
     }
+    public void setImageOne(String i){
+        imageOne = i;
+    }
     public String getImageTwo(){
         return imageTwo;
     }
+    public void setImageTwo(String i){
+        imageTwo = i;
+    }
     public String getImageThree(){
-        return imageOne;
+        return imageThree;
     }
     public void setImageCounter(int ic){
         imageCounter = ic;
     }
     public int getImageCounter(){
         return imageCounter;
+    }
+    public void setImageCounter(int ic){
+        imageCounter = ic;
     }
 }
