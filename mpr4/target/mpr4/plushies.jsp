@@ -64,7 +64,7 @@
 	<body>
             <div class="navbar">
                 <a href="/mpr4">HOME</a>
-                <a href="happy-bear-friends/views/pages/ourstory.html">OUR STORY</a>
+                <a href="happy-bear-friends/views/ourstory.html">OUR STORY</a>
             </div>
             <div class="main">
                 <h3> <%= plushie.getName()%> </h3>
